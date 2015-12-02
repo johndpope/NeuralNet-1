@@ -37,22 +37,20 @@ public class NeuralNetwork {
         return active;
     }
 
-    public func train(trainingData: NeuralNetworkData, epochs: Int, miniBatchSize: Int, eta: Double, testData: NeuralNetworkData? = nil) {
+    public func train(trainingData: NeuralNetworkData, epochs: Int, miniBatchSize: Int, eta: Double?=0.5, testData: NeuralNetworkData? = nil) {
+        let n = Double(trainingData.count)
         for epoch in 0..<epochs {
             let data = shuffle(trainingData);
             for batch in chunk(data, size: miniBatchSize) {
-                updateMiniBatch(batch, eta: eta)
+                updateMiniBatch(batch, eta: eta!, trainingDataSize: n)
             }
 
             if testData != nil {
-                let success = self.evaluate(testData!)
-                let testSize = testData!.count
-                print("Epoch \(epoch):  \(success) / \(testSize)")
+                print("Epoch \(epoch):  sum-error = \(evaluateTotalError(testData!))")
             }
         }
 
     }
-
 
     public func evaluate(data: NeuralNetworkData) -> Int {
         var success = 0
@@ -64,13 +62,22 @@ public class NeuralNetwork {
         return success
     }
 
+    public func evaluateTotalError(data: NeuralNetworkData) -> Double {
+        var result = 0.0
+        for (input, label) in data {
+            result += cost(feedforward(input), desired: label)
+        }
+        return result
+    }
+
+
     func sigmoid(z:[Double]) -> [Double] {
         let one = ones(z.count)
         return div(one, add(one, exp(neg(z))))
     }
 
 
-    func updateMiniBatch(miniBatch: NeuralNetworkData, eta: Double) -> Void {
+    func updateMiniBatch(miniBatch: NeuralNetworkData, eta: Double, trainingDataSize: Double){
         var nablaB = self.biases.map  { vector($0.count, 0) }
         var nablaW = self.weights.map { Matrix(rows: $0.rows, columns: $0.columns, repeatedValue: 0) }
         for (input, labelOutput) in miniBatch {
@@ -80,11 +87,11 @@ public class NeuralNetwork {
         }
 
         self.biases = zip(self.biases, nablaB).map { b, nb in
-            add(b, nb.map { -1 * eta / Double(miniBatch.count) * $0 })
+            add(b, nb.map { -1 * eta / trainingDataSize * $0 })
         }
 
         self.weights = zip(self.weights, nablaW).map { w, nw in
-            add(w, mul(-1 * eta / Double(miniBatch.count), nw))
+            add(w, mul(-1 * eta / trainingDataSize, nw))
         }
     }
 
@@ -105,10 +112,8 @@ public class NeuralNetwork {
             activations.append(activation)
         }
 
-
         // backword pass to back propgate delta
-
-        let delta: [Double] = mul(costDerivative(activations.last!, label: label), sigmoidPrime(zs.last!))
+        let delta: [Double] = costDelta(activations.last!, desired: label)
 
         deltaNablaB[deltaNablaB.count - 1] = delta;
         deltaNablaW[deltaNablaW.count - 1] = mul(toMatrix(delta), transpose(toMatrix(activations[activations.count - 2])))
@@ -116,6 +121,7 @@ public class NeuralNetwork {
         for l in 2..<self.numberOfLayers {
             let z = zs[zs.count - l]
             let sp = sigmoidPrime(z)
+
             let delta = mul(dot(transpose(self.weights[self.weights.count - l + 1]), delta), sp)
             deltaNablaB[deltaNablaB.count - l] = delta
             deltaNablaW[deltaNablaW.count - l] = mul(toMatrix(delta), transpose(toMatrix(activations[activations.count - l - 1])))
@@ -125,8 +131,15 @@ public class NeuralNetwork {
         return (deltaNablaB, deltaNablaW)
     }
 
-    func costDerivative(output: [Double], label: [Double]) -> [Double] {
-        return add(output, neg(label))
+    // use cross-entropy cost function
+    // CS = -∑x[ylna+(1−y)ln(1−a)]
+    func cost(output: [Double], desired: [Double]) -> Double {
+        let one = ones(output.count)
+        return sum(neg(add(mul(desired, log(output)), mul(add(one, neg(desired)), log(add(one, neg(output)))))))
+    }
+
+    func costDelta(output:[Double], desired:[Double]) -> [Double] {
+        return add(output, neg(desired))
     }
 
     func sigmoidPrime(z: [Double]) -> [Double] {
