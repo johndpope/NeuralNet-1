@@ -30,8 +30,8 @@ class NeuralNetworkTests: XCTestCase {
         net.weights = [Matrix([[ 0.2001109 , -0.36950856], [ 0.87468356, -0.09459014]])]
         net.biases = [[-0.46867192, -1.7646126]]
         let output = net.feedforward([1.0, 2.0])
-        XCTAssertTrue(abs(output[0] - 0.267) < 0.001)
-        XCTAssertTrue(abs(output[1] - 0.254) < 0.001)
+        XCTAssertEqualWithAccuracy(0.267, output[0], accuracy: 0.001)
+        XCTAssertEqualWithAccuracy(0.254, output[1], accuracy: 0.001)
     }
 
     func testOneRoundSDG() {
@@ -40,14 +40,14 @@ class NeuralNetworkTests: XCTestCase {
         net.biases = [[-0.46867192, -1.7646126]]
 
         net.train([([0.0, 0.0], [1.0, 0.0])], epochs: 1, miniBatchSize: 1, eta: 1.0)
+        XCTAssertEqualWithAccuracy(-0.323, net.biases[0][0], accuracy: 0.001)
+        XCTAssertEqualWithAccuracy(-1.783, net.biases[0][1], accuracy: 0.001)
+        
+        XCTAssertEqualWithAccuracy(0.2001109, net.weights[0][0,0], accuracy: 0.001)
+        XCTAssertEqualWithAccuracy(-0.36950856, net.weights[0][0,1], accuracy: 0.001)
+        XCTAssertEqualWithAccuracy(0.87468356, net.weights[0][1,0], accuracy: 0.001)
+        XCTAssertEqualWithAccuracy(-0.09459014, net.weights[0][1,1], accuracy: 0.001)
 
-        XCTAssertTrue(abs(net.biases[0][0] - -0.32304869) < 0.001)
-        XCTAssertTrue(abs(net.biases[0][1] - -1.7828652) < 0.001)
-
-        XCTAssertTrue(abs(net.weights[0][0,0] - 0.2001109) < 0.001)
-        XCTAssertTrue(abs(net.weights[0][0,1] - -0.36950856) < 0.001)
-        XCTAssertTrue(abs(net.weights[0][1,0] - 0.87468356) < 0.001)
-        XCTAssertTrue(abs(net.weights[0][1,1] - -0.09459014) < 0.001)
     }
 
     func testEvaluate() {
@@ -100,7 +100,7 @@ class NeuralNetworkTests: XCTestCase {
     }
 
 
-    func testLearningXORLogic() {
+    func testLearningXORLogicWith2OutputNeron() {
         let net = determinize(NeuralNetwork(sizes: [2, 2, 2]))
         let table = [
             ([0.0, 0.0], [1.0, 0.0]),
@@ -113,6 +113,21 @@ class NeuralNetworkTests: XCTestCase {
 
         XCTAssertEqual(table.count, net.evaluate(table))
     }
+    
+//    func testLearningXORLogicWith1OuputNeron() {
+//        let net = determinize(NeuralNetwork(sizes: [2, 2, 1]))
+//        let table = [
+//            ([0.0, 0.0], [0.0]),
+//            ([0.0, 1.0], [1.0]),
+//            ([1.0, 0.0], [1.0]),
+//            ([1.0, 1.0], [0.0])
+//        ]
+//        
+//        net.train(table, epochs: 50000, miniBatchSize: 2, eta: 3.0)
+//        XCTAssertEqualWithAccuracy(1.0, net.feedforward([1.0, 0.0])[0], accuracy: 0.1)
+//        XCTAssertEqualWithAccuracy(0.0, net.feedforward([1.0, 1.0])[0], accuracy: 0.1)
+//    }
+
 
 
     // fill initial weights and biases with pregenerated value, determinize test result
