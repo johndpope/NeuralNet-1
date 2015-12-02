@@ -13,7 +13,6 @@ Usage
 The following code create a network can solve XOR logic problem by just repeatedly showing it XOR logic table.
 
 ```swift
-import Surge
 import NeuralNet
 
 let net = NeuralNetwork(sizes: [2, 2, 1])
