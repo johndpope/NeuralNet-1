@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1623F1DC99F56E921F86D16A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9E0B834B766FE06801DB73 /* Pods.framework */; };
 		CC4CB70E1C0E725000EE0165 /* NeuralNet.h in Headers */ = {isa = PBXBuildFile; fileRef = CC4CB70D1C0E725000EE0165 /* NeuralNet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC4CB7151C0E725000EE0165 /* NeuralNet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC4CB70A1C0E725000EE0165 /* NeuralNet.framework */; };
 		CC4CB71A1C0E725000EE0165 /* NeuralNetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CB7191C0E725000EE0165 /* NeuralNetTests.swift */; };
+		CCE7734846EA48629245C8E3 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9E0B834B766FE06801DB73 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +25,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19F2B6508C9820E2A3BDE146 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		1A9E0B834B766FE06801DB73 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC4CB70A1C0E725000EE0165 /* NeuralNet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NeuralNet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC4CB70D1C0E725000EE0165 /* NeuralNet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NeuralNet.h; sourceTree = "<group>"; };
 		CC4CB70F1C0E725000EE0165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC4CB7141C0E725000EE0165 /* NeuralNetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeuralNetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC4CB7191C0E725000EE0165 /* NeuralNetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuralNetTests.swift; sourceTree = "<group>"; };
 		CC4CB71B1C0E725000EE0165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD03532BDC1E52D799CD2208 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1623F1DC99F56E921F86D16A /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,18 +50,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC4CB7151C0E725000EE0165 /* NeuralNet.framework in Frameworks */,
+				CCE7734846EA48629245C8E3 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30A9EDCCB7447200FB37AB4B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A9E0B834B766FE06801DB73 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CC4CB7001C0E725000EE0165 = {
 			isa = PBXGroup;
 			children = (
 				CC4CB70C1C0E725000EE0165 /* NeuralNet */,
 				CC4CB7181C0E725000EE0165 /* NeuralNetTests */,
 				CC4CB70B1C0E725000EE0165 /* Products */,
+				E0F67062C54980B788486BC4 /* Pods */,
+				30A9EDCCB7447200FB37AB4B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +103,15 @@
 			path = NeuralNetTests;
 			sourceTree = "<group>";
 		};
+		E0F67062C54980B788486BC4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DD03532BDC1E52D799CD2208 /* Pods.debug.xcconfig */,
+				19F2B6508C9820E2A3BDE146 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -104,10 +130,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CC4CB71E1C0E725000EE0165 /* Build configuration list for PBXNativeTarget "NeuralNet" */;
 			buildPhases = (
+				B10F5A2DC505F0BD84684EA6 /* Check Pods Manifest.lock */,
 				CC4CB7051C0E725000EE0165 /* Sources */,
 				CC4CB7061C0E725000EE0165 /* Frameworks */,
 				CC4CB7071C0E725000EE0165 /* Headers */,
 				CC4CB7081C0E725000EE0165 /* Resources */,
+				231DBA67AFCA0CC9626798FF /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -122,9 +150,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CC4CB7211C0E725000EE0165 /* Build configuration list for PBXNativeTarget "NeuralNetTests" */;
 			buildPhases = (
+				563ADEA2028850BA377C1DFC /* Check Pods Manifest.lock */,
 				CC4CB7101C0E725000EE0165 /* Sources */,
 				CC4CB7111C0E725000EE0165 /* Frameworks */,
 				CC4CB7121C0E725000EE0165 /* Resources */,
+				20398CCD0A13D85EFB59D075 /* Embed Pods Frameworks */,
+				3F5A8DCC9D6071EEAD8C1253 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -188,6 +219,84 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		20398CCD0A13D85EFB59D075 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		231DBA67AFCA0CC9626798FF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3F5A8DCC9D6071EEAD8C1253 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		563ADEA2028850BA377C1DFC /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B10F5A2DC505F0BD84684EA6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CC4CB7051C0E725000EE0165 /* Sources */ = {
@@ -307,6 +416,7 @@
 		};
 		CC4CB71F1C0E725000EE0165 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD03532BDC1E52D799CD2208 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -323,6 +433,7 @@
 		};
 		CC4CB7201C0E725000EE0165 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19F2B6508C9820E2A3BDE146 /* Pods.release.xcconfig */;
 			buildSettings = {
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -339,6 +450,7 @@
 		};
 		CC4CB7221C0E725000EE0165 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD03532BDC1E52D799CD2208 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = NeuralNetTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -349,6 +461,7 @@
 		};
 		CC4CB7231C0E725000EE0165 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19F2B6508C9820E2A3BDE146 /* Pods.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = NeuralNetTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -376,6 +489,7 @@
 				CC4CB7201C0E725000EE0165 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CC4CB7211C0E725000EE0165 /* Build configuration list for PBXNativeTarget "NeuralNetTests" */ = {
 			isa = XCConfigurationList;
@@ -384,6 +498,7 @@
 				CC4CB7231C0E725000EE0165 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
