@@ -6,7 +6,8 @@
 //  Copyright © 2015 wpc. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <Accelerate/Accelerate.h>
 
 //! Project version number for NeuralNet.
 FOUNDATION_EXPORT double NeuralNetVersionNumber;
