@@ -10,9 +10,10 @@ TBD
 Usage
 =====
 
-The following code train a network solving XOR problem
+The following code train a network solving XOR problem. (function maxi is for finding the index of max value in an array)
 
 ```swift
+import Surge
 import NeuralNet
 
 let net = NeuralNetwork(sizes: [2, 2, 2])
