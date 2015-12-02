@@ -87,11 +87,11 @@ public class NeuralNetwork {
         }
 
         self.biases = zip(self.biases, nablaB).map { b, nb in
-            add(b, nb.map { -1 * eta / trainingDataSize * $0 })
+            add(b, nb.map { -1 * eta / Double(miniBatch.count) * $0 })
         }
 
         self.weights = zip(self.weights, nablaW).map { w, nw in
-            add(w, mul(-1 * eta / trainingDataSize, nw))
+            add(w, mul(-1 * eta / Double(miniBatch.count), nw))
         }
     }
 
