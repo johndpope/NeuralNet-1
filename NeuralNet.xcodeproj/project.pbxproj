@@ -10,7 +10,8 @@
 		1623F1DC99F56E921F86D16A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9E0B834B766FE06801DB73 /* Pods.framework */; };
 		CC4CB70E1C0E725000EE0165 /* NeuralNet.h in Headers */ = {isa = PBXBuildFile; fileRef = CC4CB70D1C0E725000EE0165 /* NeuralNet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC4CB7151C0E725000EE0165 /* NeuralNet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC4CB70A1C0E725000EE0165 /* NeuralNet.framework */; };
-		CC4CB71A1C0E725000EE0165 /* NeuralNetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4CB7191C0E725000EE0165 /* NeuralNetTests.swift */; };
+		CCCA4D501C0E7969005C6B8D /* NeuralNetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA4D4F1C0E7969005C6B8D /* NeuralNetworkTests.swift */; };
+		CCCA4D521C0E79CD005C6B8D /* NeuralNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA4D511C0E79CD005C6B8D /* NeuralNetwork.swift */; };
 		CCE7734846EA48629245C8E3 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9E0B834B766FE06801DB73 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,8 +32,9 @@
 		CC4CB70D1C0E725000EE0165 /* NeuralNet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NeuralNet.h; sourceTree = "<group>"; };
 		CC4CB70F1C0E725000EE0165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC4CB7141C0E725000EE0165 /* NeuralNetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeuralNetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CC4CB7191C0E725000EE0165 /* NeuralNetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuralNetTests.swift; sourceTree = "<group>"; };
 		CC4CB71B1C0E725000EE0165 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CCCA4D4F1C0E7969005C6B8D /* NeuralNetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeuralNetworkTests.swift; sourceTree = "<group>"; };
+		CCCA4D511C0E79CD005C6B8D /* NeuralNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NeuralNetwork.swift; sourceTree = "<group>"; };
 		DD03532BDC1E52D799CD2208 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +92,7 @@
 			children = (
 				CC4CB70D1C0E725000EE0165 /* NeuralNet.h */,
 				CC4CB70F1C0E725000EE0165 /* Info.plist */,
+				CCCA4D511C0E79CD005C6B8D /* NeuralNetwork.swift */,
 			);
 			path = NeuralNet;
 			sourceTree = "<group>";
@@ -97,8 +100,8 @@
 		CC4CB7181C0E725000EE0165 /* NeuralNetTests */ = {
 			isa = PBXGroup;
 			children = (
-				CC4CB7191C0E725000EE0165 /* NeuralNetTests.swift */,
 				CC4CB71B1C0E725000EE0165 /* Info.plist */,
+				CCCA4D4F1C0E7969005C6B8D /* NeuralNetworkTests.swift */,
 			);
 			path = NeuralNetTests;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCCA4D521C0E79CD005C6B8D /* NeuralNetwork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,7 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC4CB71A1C0E725000EE0165 /* NeuralNetTests.swift in Sources */,
+				CCCA4D501C0E7969005C6B8D /* NeuralNetworkTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +422,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DD03532BDC1E52D799CD2208 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -428,6 +433,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = wpc.NeuralNet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -435,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 19F2B6508C9820E2A3BDE146 /* Pods.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
