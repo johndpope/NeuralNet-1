@@ -37,7 +37,14 @@ public class NeuralNetwork {
         return active;
     }
 
-    public func train(trainingData: NeuralNetworkData, epochs: Int, miniBatchSize: Int, eta: Double?=0.5, testData: NeuralNetworkData? = nil) {
+    public func train(
+        trainingData: NeuralNetworkData,
+        epochs: Int,
+        miniBatchSize: Int,
+        eta: Double? = 0.5,
+        evaluatingData: NeuralNetworkData? = nil,
+        eachEpoch: ((Int) -> Void)? = nil
+    ) {
         let n = Double(trainingData.count)
         for epoch in 0..<epochs {
             let data = shuffle(trainingData);
@@ -45,8 +52,12 @@ public class NeuralNetwork {
                 updateMiniBatch(batch, eta: eta!, trainingDataSize: n)
             }
 
-            if testData != nil {
-                print("Epoch \(epoch):  sum-error = \(evaluateTotalError(testData!))")
+            if evaluatingData != nil {
+                print("Epoch \(epoch):  sum-error = \(evaluateTotalError(evaluatingData!))")
+            }
+
+            if eachEpoch != nil {
+                eachEpoch!(epoch)
             }
         }
 

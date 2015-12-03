@@ -120,6 +120,16 @@ class NeuralNetworkTests: XCTestCase {
         XCTAssertEqualWithAccuracy(0.0, net.feedforward([1.0, 1.0])[0], accuracy: 0.1)
     }
 
+    func testCallbackOnEachEpoch() {
+        let net = determinize(NeuralNetwork(sizes: [1, 1, 1, 1]))
+        var epoches: [Int] = []
+        net.train([([1.0], [1.0])], epochs: 30, miniBatchSize: 1, eachEpoch: {
+            epoches.append($0)
+        })
+
+        XCTAssertEqual(Array(0..<30), epoches)
+    }
+
 
 
     // fill initial weights and biases with pregenerated value, determinize test result
